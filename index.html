@@ -3,70 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>Sanjana Reddy | Portfolio</title>
 
 <style>
-   /* ===== CONTACT CARD ===== */
-
-#contact{
-  text-align:center;
-  padding:120px 0;
-}
-
-.contact-card{
-  background: rgba(17,24,39,0.7);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-
-  padding: 60px 40px;
-  border-radius: 20px;
-
-  max-width: 500px;
-  margin: auto;
-
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-
-.contact-card h2{
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.contact-card p{
-  color: var(--text-muted);
-  margin-bottom: 30px;
-}
-
-.contact-buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-/* ========================
-   GLOBAL
-======================== */
+/* ======================== GLOBAL ======================== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family: "Segoe UI", sans-serif;
 }
+html{ scroll-behavior:smooth; }
+body{ background:#050F59; color:white; }
 
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#050F59;
-  color:white;
-}
-
-/* ========================
-   NAV
-======================== */
+/* ======================== NAV ======================== */
 nav{
   position:fixed;
   top:0;
@@ -77,11 +27,7 @@ nav{
   background:rgba(5,15,89,0.95);
   z-index:1000;
 }
-
-nav h2{
-  font-weight:400;
-}
-
+nav h2{ font-weight:400; }
 nav a{
   margin-left:20px;
   text-decoration:none;
@@ -89,27 +35,23 @@ nav a{
   cursor:pointer;
 }
 
-/* ========================
-   SECTIONS
-======================== */
+/* ======================== SECTIONS ======================== */
 section{
   min-height:100vh;
   padding:120px 10%;
 }
 
-/* ========================
-   HOME
-======================== */
+/* ======================== HOME ======================== */
 #home{
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
+  position:relative; /* required for snow */
+  overflow:hidden;
 }
 
-/* ========================
-   CARDS
-======================== */
+/* ======================== CARDS ======================== */
 .card{
   background:white;
   color:#050F59;
@@ -119,29 +61,19 @@ section{
   transition:0.3s;
   cursor:pointer;
 }
+.card:hover{ transform:scale(1.02); }
 
-.card:hover{
-  transform:scale(1.02);
-}
-
-/* ========================
-   PROJECT
-======================== */
+/* ======================== PROJECT ======================== */
 .project-container{
   display:flex;
   flex-direction:column;
   gap:20px;
 }
-
 .project-details{
   display:none;
   margin-top:15px;
 }
-
-.project-card.open .project-details{
-  display:block;
-}
-
+.project-card.open .project-details{ display:block; }
 
 .btn{
   display:inline-block;
@@ -153,26 +85,54 @@ section{
   margin-top:8px;
 }
 
-/* ========================
-   SNOW
-======================== */
+/* ======================== CONTACT CARD ======================== */
+#contact{ text-align:center; padding:120px 0; }
+.contact-card{
+  background: rgba(17,24,39,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  padding: 60px 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.contact-card h2{ font-size: 2.5rem; margin-bottom: 10px; }
+.contact-card p{ color: #d1d5db; margin-bottom: 30px; }
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.magnetic-btn{
+  padding: 10px 18px;
+  background: #1E3A8A;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.magnetic-btn:hover{
+  transform: scale(1.05);
+  background: #3749A9;
+}
+
+/* ======================== SNOW ======================== */
 .snow{
-  position:absolute;   /* important */
+  position:absolute;
   top:-10px;
-  background:rgba(255,255,255,0.18); /* subtle */
+  background:rgba(255,255,255,0.18);
   border-radius:50%;
   pointer-events:none;
   animation:fall linear infinite;
 }
-
-#home{
-  position:relative; /* required for snow */
-  overflow:hidden;
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
-
 </style>
 </head>
-
 
 <body>
 
@@ -183,15 +143,14 @@ section{
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
-
 
 <!-- ================= HOME ================= -->
 <section id="home">
   <h1>Welcome to My Portfolio</h1>
 </section>
-
 
 <!-- ================= ABOUT ================= -->
 <section id="about">
@@ -203,127 +162,89 @@ section{
   </p>
 </section>
 
-
 <!-- ================= SKILLS ================= -->
 <section id="skills">
   <h2>Skills</h2>
-
   <div class="card">UI / UX Design</div>
   <div class="card">Figma</div>
   <div class="card">HTML • CSS • JavaScript</div>
   <div class="card">Problem Solving</div>
 </section>
 
-
 <!-- ================= PROJECTS ================= -->
 <section id="projects">
   <h2>Projects</h2>
-
   <div class="project-container">
 
     <!-- Project 1 -->
     <div class="card project-card">
       <h3>Campus Event Management</h3>
-
       <div class="project-details">
-
-        <p>Campus Event Finder App - Project Overview
-
-Problem: College students often miss important campus events because information is scattered across multiple platforms like WhatsApp groups, email, physical posters, and bulletin boards. There's no centralized place to discover and manage all campus activities.
-
-Solution: Campus Event Finder is a mobile-first web application that provides students with a single, streamlined platform to discover, filter, and save campus events. The app eliminates the frustration of missed opportunities by centralizing all event information in one beautiful, easy-to-use interface.
-
-Key Features:
-
-🔍 Smart Search - Quickly find events by name, category, or location
-🎯 Advanced Filtering - Filter by 10+ categories (Academic, Sports, Cultural, Tech, Arts, etc.)
-📌 Save Events - Bookmark favorite events for easy access
-📱 Mobile-First Design - Optimized for on-the-go students
-🎨 Clean UI/UX - Modern interface with intuitive navigation
-Target Users: College students aged 18-24 who actively use mobile devices and want quick, reliable access to campus event information.
-
-Tech Stack: React, TypeScript, Tailwind CSS, Motion (Framer Motion), Lucide Icons
-
-Impact: Helps students stay connected with campus life, discover opportunities, and never miss important events again.
-
-.</p>
-
-        <!-- 🔥 PASTE PROJECT LINK HERE -->
+        <p>
+          Campus Event Finder App - Project Overview<br><br>
+          Problem: College students often miss important campus events because information is scattered across multiple platforms.<br><br>
+          Solution: A mobile-first web application that centralizes event info.<br><br>
+          Key Features:<br>
+          🔍 Smart Search<br>
+          🎯 Advanced Filtering<br>
+          📌 Save Events<br>
+          📱 Mobile-First Design<br>
+          🎨 Clean UI/UX<br><br>
+          Tech Stack: React, TypeScript, Tailwind CSS, Motion, Lucide Icons
+        </p>
         <a href="https://www.figma.com/make/Wd69leFsxW9MCxla5CueAC/Campus-Event-Finder-App?fullscreen=1&t=dzdYEBPI874nRsDE-1" target="_blank" class="btn">
           Open Project
         </a>
-
       </div>
     </div>
-
 
     <!-- Project 2 -->
     <div class="card project-card">
       <h3>Bank Accounts Management</h3>
-
       <div class="project-details">
-
-        <p> Java code for bank account management typically involves creating classes that model real-world banking entities like Account, Customer, and Bank. This code leverages Object-Oriented Programming (OOP) principles to perform basic operations such as account creation, balance inquiry, deposits, and withdrawals.
-        .</p>
-
+        <p>
+          Java code for bank account management involves creating classes that model real-world banking entities like Account, Customer, and Bank. It uses OOP principles to perform operations such as account creation, balance inquiry, deposits, and withdrawals.
+        </p>
         <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/" target="_blank" class="btn">
-
           Open Project
         </a>
-
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ===== CONTACT SECTION (SEPARATE CARD) ===== -->
-<section id="contact" class="scroll-section">
-  <div class="container">
-
-    <div class="contact-card">
-
-      <h2>Let's Connect</h2>
-      <p>Open for collaborations, internships, and projects.</p>
-
-      <div class="contact-buttons">
-        <a href="mailto:csanjana2207@gmail.com" class="magnetic-btn">Gmail</a>
-
-        <a href="https://www.linkedin.com/in/sanjana-reddy-552583315/"
-           target="_blank"
-           class="magnetic-btn">
-           LinkedIn
-        </a>
-      </div>
-
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="contact-card">
+    <h2>Let's Connect</h2>
+    <p>Open for collaborations, internships, and projects.</p>
+    <div class="contact-buttons">
+      <a href="mailto:csanjana2207@gmail.com" class="magnetic-btn">Gmail</a>
+      <a href="https://www.linkedin.com/in/sanjana-reddy-552583315/" target="_blank" class="magnetic-btn">LinkedIn</a>
     </div>
-
   </div>
 </section>
-
 
 <script>
 /* ===== Snow ONLY inside home section ===== */
-
 const home = document.getElementById("home");
-
 for(let i=0;i<25;i++){
   const s = document.createElement("div");
-
   s.className = "snow";
-
   s.style.left = Math.random()*100 + "%";
   s.style.width = s.style.height = Math.random()*3 + 2 + "px";
   s.style.animationDuration = (Math.random()*8 + 10) + "s";
-
-  home.appendChild(s);  // 👈 KEY DIFFERENCE (not body)
+  home.appendChild(s);
 }
+
+/* ===== Toggle Project Cards ===== */
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("open");
+  });
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
