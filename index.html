@@ -7,6 +7,44 @@
 <title>Sanjana Reddy | Portfolio</title>
 
 <style>
+   /* ===== CONTACT CARD ===== */
+
+#contact{
+  text-align:center;
+  padding:120px 0;
+}
+
+.contact-card{
+  background: rgba(17,24,39,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+
+  padding: 60px 40px;
+  border-radius: 20px;
+
+  max-width: 500px;
+  margin: auto;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.contact-card h2{
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.contact-card p{
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
 /* ========================
    GLOBAL
 ======================== */
@@ -138,18 +176,19 @@ section{
    SNOW
 ======================== */
 .snow{
-  position:fixed;
+  position:absolute;   /* important */
   top:-10px;
-  background:white;
+  background:rgba(255,255,255,0.18); /* subtle */
   border-radius:50%;
-  opacity:0.8;
   pointer-events:none;
   animation:fall linear infinite;
 }
 
-@keyframes fall{
-  to{ transform:translateY(110vh); }
+#home{
+  position:relative; /* required for snow */
+  overflow:hidden;
 }
+
 </style>
 </head>
 
@@ -211,7 +250,26 @@ section{
         <!-- 🔥 PASTE IMAGE PATH HERE -->
         <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Campuseventfinderapp.png" class="project-img">
 
-        <p>Short description about project and what it does.</p>
+        <p>Campus Event Finder App - Project Overview
+
+Problem: College students often miss important campus events because information is scattered across multiple platforms like WhatsApp groups, email, physical posters, and bulletin boards. There's no centralized place to discover and manage all campus activities.
+
+Solution: Campus Event Finder is a mobile-first web application that provides students with a single, streamlined platform to discover, filter, and save campus events. The app eliminates the frustration of missed opportunities by centralizing all event information in one beautiful, easy-to-use interface.
+
+Key Features:
+
+🔍 Smart Search - Quickly find events by name, category, or location
+🎯 Advanced Filtering - Filter by 10+ categories (Academic, Sports, Cultural, Tech, Arts, etc.)
+📌 Save Events - Bookmark favorite events for easy access
+📱 Mobile-First Design - Optimized for on-the-go students
+🎨 Clean UI/UX - Modern interface with intuitive navigation
+Target Users: College students aged 18-24 who actively use mobile devices and want quick, reliable access to campus event information.
+
+Tech Stack: React, TypeScript, Tailwind CSS, Motion (Framer Motion), Lucide Icons
+
+Impact: Helps students stay connected with campus life, discover opportunities, and never miss important events again.
+
+.</p>
 
         <!-- 🔥 PASTE PROJECT LINK HERE -->
         <a href="https://www.figma.com/make/Wd69leFsxW9MCxla5CueAC/Campus-Event-Finder-App?fullscreen=1&t=dzdYEBPI874nRsDE-1" target="_blank" class="btn">
@@ -230,7 +288,13 @@ section{
 
         <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\BankAccountManagement.png" class="project-img">
 
-        <p>Short description about project.</p>
+        <p> Java code for bank account management typically involves creating classes that model real-world banking entities like Account, Customer, and Bank. This code leverages Object-Oriented Programming (OOP) principles to perform basic operations such as account creation, balance inquiry, deposits, and withdrawals.
+        Key Components and Functionality
+Account Class: The core class defines common properties such as accountNumber, accountHolder name, and balance. It typically includes methods for:
+deposit(amount): Adds funds to the balance.
+withdraw(amount): Subtracts funds, often with checks for sufficient balance.
+checkBalance(): Retrieves the current balance.
+displayDetails(): Shows account information.</p>
 
         <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/"_blank" class="btn">
           Open Project
@@ -245,56 +309,73 @@ section{
 
 <!-- ================= CERTIFICATES ================= -->
 <section id="certificates">
-  <h2>Certificates</h2>
+    <h2>Certificates</h2>
 
-  <div class="cert-grid">
+    <div class="cert-grid">
 
-    <div class="card">
-      <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\delloite.png" class="cert-img">
+        <div class="card">
+            <img src="certificates/deloitte.png" class="cert-img">
 
-      <!-- 🔥 paste link -->
-      <a href="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\delloite.png" target="_blank" class="btn">
-        View Certificate
-      </a>
+            <a href="certificates/deloitte.png" target="_blank" class="btn">
+                View Certificate
+            </a>
+        </div>
+
+        <div class="card">
+            <img src="certificates/microsoft.png" class="cert-img">
+
+            <a href="certificates/microsoft.png" target="_blank" class="btn">
+                View Certificate
+            </a>
+        </div>
+
     </div>
+</section>
 
-    <div class="card">
-      <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Microsoft.png" class="cert-img">
+<!-- ===== CONTACT SECTION (SEPARATE CARD) ===== -->
+<section id="contact" class="scroll-section">
+  <div class="container">
 
-      <a href="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Microsoft.png" target="_blank" class="btn">
-        View Certificate
-      </a>
+    <div class="contact-card">
+
+      <h2>Let's Connect</h2>
+      <p>Open for collaborations, internships, and projects.</p>
+
+      <div class="contact-buttons">
+        <a href="mailto:csanjana2207@gmail.com" class="magnetic-btn">Gmail</a>
+
+        <a href="https://www.linkedin.com/in/sanjana-reddy-552583315/"
+           target="_blank"
+           class="magnetic-btn">
+           LinkedIn
+        </a>
+      </div>
+
     </div>
 
   </div>
 </section>
 
 
-
-<!-- ================= SCRIPTS ================= -->
 <script>
+/* ===== Snow ONLY inside home section ===== */
 
-/* SNOW ONLY ON HOME */
-for(let i=0;i<40;i++){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.style.left=Math.random()*100+"vw";
-  s.style.width=s.style.height=Math.random()*5+3+"px";
-  s.style.animationDuration=(Math.random()*5+5)+"s";
-  document.body.appendChild(s);
+const home = document.getElementById("home");
+
+for(let i=0;i<25;i++){
+  const s = document.createElement("div");
+
+  s.className = "snow";
+
+  s.style.left = Math.random()*100 + "%";
+  s.style.width = s.style.height = Math.random()*3 + 2 + "px";
+  s.style.animationDuration = (Math.random()*8 + 10) + "s";
+
+  home.appendChild(s);  // 👈 KEY DIFFERENCE (not body)
 }
-
-
-/* PROJECT TAP OPEN */
-document.querySelectorAll(".project-card").forEach(card=>{
-  card.addEventListener("click",()=>{
-    card.classList.toggle("open");
-  });
-});
-
 </script>
-
 
 </body>
 </html>
+
 
