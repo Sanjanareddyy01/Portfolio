@@ -1,277 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sanjana Reddy | UI/UX Designer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Sanjana Reddy | Portfolio</title>
 
 <style>
-:root{
---bg-color:#0B0F14;
---surface-color:#111827;
---primary:#7C3AED;
---text:#fff;
---muted:#9CA3AF;
+/* ========================
+   GLOBAL
+======================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Outfit',sans-serif;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-background:var(--bg-color);
-color:var(--text);
-overflow-x:hidden;
+  background:#050F59;
+  color:white;
 }
 
+/* ========================
+   NAV
+======================== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(5,15,89,0.95);
+  z-index:1000;
+}
+
+nav h2{
+  font-weight:400;
+}
+
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* ========================
+   SECTIONS
+======================== */
 section{
-min-height:100vh;
-padding:80px 8%;
-display:flex;
-flex-direction:column;
-justify-content:center;
+  min-height:100vh;
+  padding:120px 10%;
 }
 
-/* HERO */
-#hero h1{
-font-size:5rem;
-font-weight:800;
+/* ========================
+   HOME
+======================== */
+#home{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-#hero h2{
-color:var(--muted);
-margin-top:10px;
+/* ========================
+   CARDS
+======================== */
+.card{
+  background:white;
+  color:#050F59;
+  padding:20px;
+  border-radius:14px;
+  margin:15px 0;
+  transition:0.3s;
+  cursor:pointer;
 }
 
-.magnetic-btn{
-display:inline-block;
-margin-top:30px;
-padding:12px 24px;
-border-radius:30px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-text-decoration:none;
-color:white;
-transition:.3s;
+.card:hover{
+  transform:scale(1.02);
 }
 
-.magnetic-btn:hover{
-background:var(--primary);
+/* ========================
+   PROJECT
+======================== */
+.project-container{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-/* ABOUT */
-.about p{
-color:var(--muted);
-line-height:1.7;
-margin-top:15px;
-max-width:500px;
+.project-details{
+  display:none;
+  margin-top:15px;
 }
 
-.skills li{
-color:var(--muted);
-margin-top:6px;
+.project-card.open .project-details{
+  display:block;
 }
 
-/* PROJECTS */
-.projects-container{
-display:flex;
-flex-direction:column;
-gap:30px;
-margin-top:30px;
+.project-img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
-.project-card{
-display:grid;
-grid-template-columns:1.2fr 1fr;
-gap:20px;
-background:var(--surface-color);
-border-radius:14px;
-overflow:hidden;
-cursor:pointer;
-transition:.3s;
+.btn{
+  display:inline-block;
+  padding:8px 14px;
+  background:#050F59;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  margin-top:8px;
 }
 
-.project-card:hover{
-transform:translateY(-6px);
+/* ========================
+   CERTIFICATES
+======================== */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
-.project-card img{
-width:100%;
-height:250px;
-object-fit:cover;
+.cert-img{
+  width:100%;
+  border-radius:10px;
 }
 
-.project-info{
-padding:20px;
+/* ========================
+   SNOW
+======================== */
+.snow{
+  position:fixed;
+  top:-10px;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  pointer-events:none;
+  animation:fall linear infinite;
 }
 
-.project-info p{
-color:var(--muted);
-}
-
-/* CERTIFICATES */
-.certificate-card{
-background:var(--surface-color);
-padding:15px;
-border-radius:10px;
-margin-top:15px;
-}
-
-.certificate-card a{
-color:var(--primary);
-text-decoration:none;
-}
-
-/* MODAL */
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.7);
-backdrop-filter:blur(8px);
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
-
-.modal-content{
-background:#111;
-padding:30px;
-border-radius:14px;
-width:90%;
-max-width:600px;
-}
-
-.close{
-text-align:right;
-cursor:pointer;
-color:var(--muted);
-margin-bottom:15px;
-}
-
-.modal-content img{
-width:100%;
-border-radius:10px;
-margin-bottom:15px;
+@keyframes fall{
+  to{ transform:translateY(110vh); }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- HERO -->
-<section id="hero">
-<h1>Sanjana Reddy</h1>
-<h2>Aspiring UI/UX Designer</h2>
-<a href="#projects" class="magnetic-btn">View Work</a>
+<!-- ================= NAV ================= -->
+<nav>
+  <h2>Sanjana Reddy</h2>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
+  </div>
+</nav>
+
+
+<!-- ================= HOME ================= -->
+<section id="home">
+  <h1>Welcome to My Portfolio</h1>
 </section>
 
-<!-- ABOUT -->
-<section class="about">
-<h2>About Me</h2>
 
-<p>
-Hii!! I'm Sanjana Reddy — a second-year CSE (AIML) student at SCETW with a strong interest in crafting thoughtful, intuitive digital experiences. I focus on UI/UX design and love turning ideas into clean, user-friendly interfaces that solve real problems.
-</p>
-
-<h3 style="margin-top:30px;">Skills</h3>
-<ul class="skills">
-<li>Java</li>
-<li>Figma</li>
-<li>UI/UX Design</li>
-<li>Prototyping & Wireframing</li>
-<li>Interaction Design</li>
-</ul>
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <h2>About Me</h2>
+  <p style="margin-top:20px; max-width:600px;">
+    Hi!! I'm Sanjana Reddy. I'm currently a second-year student at SCETW pursuing
+    Computer Science with AIML. I design intuitive and clean digital experiences
+    with a strong focus on UI/UX and practical problem solving.
+  </p>
 </section>
 
-<!-- PROJECTS -->
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <h2>Skills</h2>
+
+  <div class="card">UI / UX Design</div>
+  <div class="card">Figma</div>
+  <div class="card">HTML • CSS • JavaScript</div>
+  <div class="card">Problem Solving</div>
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
 <section id="projects">
-<h2>Projects</h2>
+  <h2>Projects</h2>
 
-<div class="projects-container">
+  <div class="project-container">
 
-<div class="project-card" onclick="openModal('bank')">
-<img src="images/bank.jpg">
-<div class="project-info">
-<h3>Bank Accounts Management</h3>
-<p>Console-based Java banking system using OOP & persistent storage.</p>
-</div>
-</div>
+    <!-- Project 1 -->
+    <div class="card project-card">
+      <h3>Campus Event Management</h3>
 
-<div class="project-card" onclick="openModal('campus')">
-<img src="images/campus.jpg">
-<div class="project-info">
-<h3>Campus Event Finder App</h3>
-<p>UX research, wireframes and interactive Figma prototype.</p>
-</div>
-</div>
+      <div class="project-details">
 
-</div>
+        <!-- 🔥 PASTE IMAGE PATH HERE -->
+        <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Campuseventfinderapp.png" class="project-img">
+
+        <p>Short description about project and what it does.</p>
+
+        <!-- 🔥 PASTE PROJECT LINK HERE -->
+        <a href="https://www.figma.com/make/Wd69leFsxW9MCxla5CueAC/Campus-Event-Finder-App?fullscreen=1&t=dzdYEBPI874nRsDE-1" target="_blank" class="btn">
+          Open Project
+        </a>
+
+      </div>
+    </div>
+
+
+    <!-- Project 2 -->
+    <div class="card project-card">
+      <h3>Bank Accounts Management</h3>
+
+      <div class="project-details">
+
+        <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\BankAccountManagement.png" class="project-img">
+
+        <p>Short description about project.</p>
+
+        <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/"_blank" class="btn">
+          Open Project
+        </a>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- CERTIFICATES -->
-<section>
-<h2>Certificates</h2>
 
-<div class="certificate-card">
-Google UX Design —
-<a href="https://certificate-link.com" target="_blank">View</a>
-</div>
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates">
+  <h2>Certificates</h2>
 
-<div class="certificate-card">
-Frontend Development —
-<a href="https://certificate-link.com" target="_blank">View</a>
-</div>
+  <div class="cert-grid">
+
+    <div class="card">
+      <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\delloite.png" class="cert-img">
+
+      <!-- 🔥 paste link -->
+      <a href="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\delloite.png" target="_blank" class="btn">
+        View Certificate
+      </a>
+    </div>
+
+    <div class="card">
+      <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Microsoft.png" class="cert-img">
+
+      <a href="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Microsoft.png" target="_blank" class="btn">
+        View Certificate
+      </a>
+    </div>
+
+  </div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<div class="close" onclick="closeModal()">✕ Close</div>
-<div id="modal-body"></div>
-</div>
-</div>
 
+
+<!-- ================= SCRIPTS ================= -->
 <script>
-const modal = document.getElementById("modal");
-const body = document.getElementById("modal-body");
 
-function openModal(type){
-
-let content="";
-
-if(type==="bank"){
-content=`
-<img src="images/bank.jpg">
-<h2>Bank Accounts Management</h2>
-<p>Full Java banking application demonstrating OOP, account handling and file storage.</p>
-<a href="https://sanjanareddyy01.github.io/BankAccountsManagement/" target="_blank" class="magnetic-btn">Open Project</a>
-`;
+/* SNOW ONLY ON HOME */
+for(let i=0;i<40;i++){
+  const s=document.createElement("div");
+  s.className="snow";
+  s.style.left=Math.random()*100+"vw";
+  s.style.width=s.style.height=Math.random()*5+3+"px";
+  s.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(s);
 }
 
-if(type==="campus"){
-content=`
-<img src="images/campus.jpg">
-<h2>Campus Event Finder App</h2>
-<p>Complete UX case study and prototype designed in Figma.</p>
-<a href="https://www.figma.com/make/Wd69leFsxW9MCxla5CueAC/Campus-Event-Finder-App?fullscreen=1&t=dzdYEBPI874nRsDE-1" class="magnetic-btn">Open Prototype</a>
-`;
-}
 
-body.innerHTML=content;
-modal.style.display="flex";
-}
+/* PROJECT TAP OPEN */
+document.querySelectorAll(".project-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    card.classList.toggle("open");
+  });
+});
 
-function closeModal(){
-modal.style.display="none";
-}
 </script>
+
 
 </body>
 </html>
