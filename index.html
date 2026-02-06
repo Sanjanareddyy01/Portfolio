@@ -142,11 +142,6 @@ section{
   display:block;
 }
 
-.project-img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:10px;
-}
 
 .btn{
   display:inline-block;
@@ -156,20 +151,6 @@ section{
   border-radius:8px;
   text-decoration:none;
   margin-top:8px;
-}
-
-/* ========================
-   CERTIFICATES
-======================== */
-.cert-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.cert-img{
-  width:100%;
-  border-radius:10px;
 }
 
 /* ========================
@@ -202,7 +183,6 @@ section{
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#certificates">Certificates</a>
   </div>
 </nav>
 
@@ -247,9 +227,6 @@ section{
 
       <div class="project-details">
 
-        <!-- 🔥 PASTE IMAGE PATH HERE -->
-        <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\Campuseventfinderapp.png" class="project-img">
-
         <p>Campus Event Finder App - Project Overview
 
 Problem: College students often miss important campus events because information is scattered across multiple platforms like WhatsApp groups, email, physical posters, and bulletin boards. There's no centralized place to discover and manage all campus activities.
@@ -286,8 +263,6 @@ Impact: Helps students stay connected with campus life, discover opportunities, 
 
       <div class="project-details">
 
-        <img src="C:\Users\SANJANA REDDY\OneDrive\Pictures\Screenshots\BankAccountManagement.png" class="project-img">
-
         <p> Java code for bank account management typically involves creating classes that model real-world banking entities like Account, Customer, and Bank. This code leverages Object-Oriented Programming (OOP) principles to perform basic operations such as account creation, balance inquiry, deposits, and withdrawals.
         Key Components and Functionality
 Account Class: The core class defines common properties such as accountNumber, accountHolder name, and balance. It typically includes methods for:
@@ -296,7 +271,8 @@ withdraw(amount): Subtracts funds, often with checks for sufficient balance.
 checkBalance(): Retrieves the current balance.
 displayDetails(): Shows account information.</p>
 
-        <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/"_blank" class="btn">
+        <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/" target="_blank" class="btn">
+
           Open Project
         </a>
 
@@ -304,32 +280,6 @@ displayDetails(): Shows account information.</p>
     </div>
 
   </div>
-</section>
-
-
-<!-- ================= CERTIFICATES ================= -->
-<section id="certificates">
-    <h2>Certificates</h2>
-
-    <div class="cert-grid">
-
-        <div class="card">
-            <img src="certificates/deloitte.png" class="cert-img">
-
-            <a href="certificates/deloitte.png" target="_blank" class="btn">
-                View Certificate
-            </a>
-        </div>
-
-        <div class="card">
-            <img src="certificates/Microsoft.png" class="cert-img">
-
-            <a href="certificates/Microsoft.png" target="_blank" class="btn">
-                View Certificate
-            </a>
-        </div>
-
-    </div>
 </section>
 
 <!-- ===== CONTACT SECTION (SEPARATE CARD) ===== -->
@@ -377,6 +327,7 @@ for(let i=0;i<25;i++){
 
 </body>
 </html>
+
 
 
 
