@@ -2,692 +2,276 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjana Reddy | UI/UX Designer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sanjana Reddy | UI/UX Designer</title>
 
-    <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            /* Palette */
-            --bg-color: #0B0F14;
-            --surface-color: #111827;
-            --primary-accent: #7C3AED;
-            --secondary-accent: #38BDF8;
-            --text-main: #FFFFFF;
-            --text-muted: #9CA3AF;
+<style>
+:root{
+--bg-color:#0B0F14;
+--surface-color:#111827;
+--primary:#7C3AED;
+--text:#fff;
+--muted:#9CA3AF;
+}
 
-            /* Spacing & Layout */
-            --container-width: 1200px;
-            --spacing-unit: 2rem;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
 
-        /* Reset & Base */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            cursor: none;
-            /* Custom cursor everywhere */
-        }
+body{
+background:var(--bg-color);
+color:var(--text);
+overflow-x:hidden;
+}
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            font-family: 'Outfit', sans-serif;
-            color: var(--text-main);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+section{
+min-height:100vh;
+padding:80px 8%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
 
-        /* Custom Cursor */
-        #cursor-dot,
-        #cursor-outline,
-        #cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-        }
+/* HERO */
+#hero h1{
+font-size:5rem;
+font-weight:800;
+}
 
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--text-main);
-        }
+#hero h2{
+color:var(--muted);
+margin-top:10px;
+}
 
-        #cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
+.magnetic-btn{
+display:inline-block;
+margin-top:30px;
+padding:12px 24px;
+border-radius:30px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+text-decoration:none;
+color:white;
+transition:.3s;
+}
 
-        /* Spotlight Effect (Soft light following cursor) */
-        #spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(124, 58, 237, 0.08), transparent 40%);
-        }
+.magnetic-btn:hover{
+background:var(--primary);
+}
 
-        /* Utilities */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 var(--spacing-unit);
-            position: relative;
-            z-index: 2;
-            /* Above spotlight */
-        }
+/* ABOUT */
+.about p{
+color:var(--muted);
+line-height:1.7;
+margin-top:15px;
+max-width:500px;
+}
 
-        .scroll-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
+.skills li{
+color:var(--muted);
+margin-top:6px;
+}
 
-        .scroll-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* PROJECTS */
+.projects-container{
+display:flex;
+flex-direction:column;
+gap:30px;
+margin-top:30px;
+}
 
-        button,
-        a {
-            cursor: none;
-            /* Maintain custom cursor */
-        }
+.project-card{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:20px;
+background:var(--surface-color);
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+transition:.3s;
+}
 
-        /* --- SCREEN 1: INTRO --- */
-        #intro {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s;
-        }
+.project-card:hover{
+transform:translateY(-6px);
+}
 
-        #intro.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+.project-card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
 
-        #intro-message {
-            text-align: center;
-            position: relative;
-            z-index: 1002;
-        }
+.project-info{
+padding:20px;
+}
 
-        #intro-message h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
+.project-info p{
+color:var(--muted);
+}
 
-        #intro-message p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
+/* CERTIFICATES */
+.certificate-card{
+background:var(--surface-color);
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+}
 
-        @keyframes pulse {
+.certificate-card a{
+color:var(--primary);
+text-decoration:none;
+}
 
-            0%,
-            100% {
-                opacity: 0.5;
-            }
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(8px);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
 
-            50% {
-                opacity: 1;
-            }
-        }
+.modal-content{
+background:#111;
+padding:30px;
+border-radius:14px;
+width:90%;
+max-width:600px;
+}
 
-        #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1001;
-        }
+.close{
+text-align:right;
+cursor:pointer;
+color:var(--muted);
+margin-bottom:15px;
+}
 
-        /* --- SCREEN 2: HERO --- */
-        #hero {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg-flow {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1), transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15), transparent 40%);
-            animation: flowRotate 20s linear infinite;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        @keyframes flowRotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 800;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #fff, #9ca3af);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-        }
-
-        .hero-controls {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .magnetic-btn {
-            position: relative;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-            color: #fff;
-            border-radius: 50px;
-            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
-            overflow: hidden;
-        }
-
-        .magnetic-btn:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
-            transform: scale(1.05);
-        }
-
-        .magnetic-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* --- SCREEN 3: WORK / ABOUT --- */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .about-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-content ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .about-content li {
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            border-left: 2px solid var(--primary-accent);
-            padding-left: 1rem;
-        }
-
-        .project-card {
-            background: var(--surface-color);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            cursor: none;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 300px;
-            background-color: #1a1a1a;
-            object-fit: cover;
-            /* Placeholder gradient for image */
-            background: linear-gradient(45deg, #1f2937, #111827);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #333;
-            font-weight: 800;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-info p {
-            color: var(--text-muted);
-        }
-        /* --- SCREEN 4: CONTACT --- */
-        #contact {
-            text-align: center;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4rem;
-            border-radius: 20px;
-            display: inline-block;
-            position: relative;
-            z-index: 10;
-        }
-
-        .glass-card h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        /* Hide Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-    </style>
+.modal-content img{
+width:100%;
+border-radius:10px;
+margin-bottom:15px;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Intro Overlay -->
-    <div id="intro">
-        <canvas id="particles-canvas"></canvas>
-        <div id="intro-message">
-            <h1>Hi! I'm Sanjana Reddy</h1>
-            <p>Double tap to enter</p>
-        </div>
-    </div>
+<!-- HERO -->
+<section id="hero">
+<h1>Sanjana Reddy</h1>
+<h2>Aspiring UI/UX Designer</h2>
+<a href="#projects" class="magnetic-btn">View Work</a>
+</section>
 
-    <!-- Spotlight Logic -->
-    <div id="spotlight"></div>
+<!-- ABOUT -->
+<section class="about">
+<h2>About Me</h2>
 
-    <!-- Custom Cursor -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-outline"></div>
+<p>
+Hii!! I'm Sanjana Reddy — a second-year CSE (AIML) student at SCETW with a strong interest in crafting thoughtful, intuitive digital experiences. I focus on UI/UX design and love turning ideas into clean, user-friendly interfaces that solve real problems.
+</p>
 
-    <!-- Main Content -->
-    <main style="display: none;" id="main-content">
+<h3 style="margin-top:30px;">Skills</h3>
+<ul class="skills">
+<li>Java</li>
+<li>Figma</li>
+<li>UI/UX Design</li>
+<li>Prototyping & Wireframing</li>
+<li>Interaction Design</li>
+</ul>
+</section>
 
-        <!-- Screen 2: Hero -->
-        <section id="hero" class="scroll-section visible">
-            <div class="hero-bg-flow"></div>
-            <div class="container">
-                <h1 class="hero-title">Sanjana Reddy</h1>
-                <h2 style="font-weight: 300; font-size: 2rem; color: var(--text-muted);">Aspiring UI/UX Designer</h2>
-
-                <div class="hero-controls">
-                    <a href="#work" class="magnetic-btn" style="text-decoration: none; display: inline-block;">View
-                        Work</a>
-                    <a href="#about" class="magnetic-btn" style="text-decoration: none; display: inline-block;">About
-                        Me</a>
-                    <a href="mailto:csanjana2207@gmail.com?subject=Hello%20Sanjana&body=Hi%20Sanjana,%20I%20saw%20your%20portfolio."
-                        class="magnetic-btn" style="text-decoration: none; display: inline-block;">Get in Touch</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screen 3: Work / About -->
-        <section id="work" class="scroll-section">
-            <div class="container">
-                <div class="grid-layout">
-                    <div id="about" class="about-content" style="scroll-margin-top: 100px;">
-                        <h2>About Me</h2>
-                        <p style="line-height: 1.6; color: var(--text-muted);">
-                            BTech 2nd year student at SCETW<br>
-                            Major: CSE – AIML
-                        </p>
-                        <br>
-                        <h3>Skills</h3>
-                        <ul>
-                            <li>Java</li>
-                            <li>Figma</li>
-                            <li>UI/UX Design</li>
-                            <li>Prototyping & Wireframing</li>
-                            <li>Interaction Design</li>
-                        </ul>
-                    </div>
-
-                    <div class="projects-content">
-
-<!-- Projects Section -->
+<!-- PROJECTS -->
 <section id="projects">
-    <div class="projects-container">
+<h2>Projects</h2>
 
-        <!-- Project Template (Copy this block for new projects) -->
-        <a href="https://sanjanareddyy01.github.io/BankAccountsManagement/" target="_blank" style="text-decoration: none;">
-            <div class="project-card magnetic-btn" style="border-radius: 12px; padding: 0; display: block; border: none;">
-                <div class="project-img">Project 01</div>
-                <div class="project-info">
-                    <h3>Bank Accounts Management</h3>
-                    <p>A clean, modern approach to personal finance tracking.</p>
-                </div>
-            </div>
-        </a>
+<div class="projects-container">
 
-        <a href="https://your-project-link-here.com" target="_blank" style="text-decoration: none;">
-            <div class="project-card magnetic-btn" style="border-radius: 12px; padding: 0; display: block; border: none;">
-                <div class="project-img">Project 02</div>
-                <div class="project-info">
-                    <h3>Travel Experience UI</h3>
-                    <p>Immersive booking flow for luxury travel.</p>
-                </div>
-            </div>
-        </a>
+<div class="project-card" onclick="openModal('bank')">
+<img src="images/bank.jpg">
+<div class="project-info">
+<h3>Bank Accounts Management</h3>
+<p>Console-based Java banking system using OOP & persistent storage.</p>
+</div>
+</div>
 
-        <!-- Add more projects here by copying the <a> block -->
+<div class="project-card" onclick="openModal('campus')">
+<img src="images/campus.jpg">
+<div class="project-info">
+<h3>Campus Event Finder App</h3>
+<p>UX research, wireframes and interactive Figma prototype.</p>
+</div>
+</div>
 
-    </div>
+</div>
 </section>
 
-<!-- Certificates Section -->
-<section id="certificates">
-    <div class="certificates-container">
+<!-- CERTIFICATES -->
+<section>
+<h2>Certificates</h2>
 
-        <!-- Certificate Template (Copy this block for new certificates) -->
-        <div class="certificate-card" style="border-radius: 12px; padding: 15px; margin: 10px; border: 1px solid #ccc;">
-            <h3>Google UX Design</h3>
-            <p>Completed online certification in UX Design. <a href="https://certificate-link.com" target="_blank">View Certificate</a></p>
-        </div>
+<div class="certificate-card">
+Google UX Design —
+<a href="https://certificate-link.com" target="_blank">View</a>
+</div>
 
-        <div class="certificate-card" style="border-radius: 12px; padding: 15px; margin: 10px; border: 1px solid #ccc;">
-            <h3>Frontend Web Development</h3>
-            <p>Certificate for completing HTML, CSS & JavaScript course. <a href="https://certificate-link.com" target="_blank">View Certificate</a></p>
-        </div>
-
-        <!-- Add more certificates here by copying the <div class="certificate-card"> block -->
-
-    </div>
+<div class="certificate-card">
+Frontend Development —
+<a href="https://certificate-link.com" target="_blank">View</a>
+</div>
 </section>
 
-        <!-- Screen 4: Contact -->
-        <section id="contact" class="scroll-section">
-            <canvas id="snow-canvas"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
-            <div class="container">
-                <div class="glass-card">
-                    <h2>Let's Talk</h2>
-                    <p style="color: var(--text-muted);">Open for collaborations and opportunities.</p>
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<div class="close" onclick="closeModal()">✕ Close</div>
+<div id="modal-body"></div>
+</div>
+</div>
 
-                    <div class="contact-links">
-                        <a href="mailto:csanjana2207@gmail.com?subject=Hello%20Sanjana&body=Hi%20Sanjana,%20I%20saw%20your%20portfolio."
-                            class="magnetic-btn" style="text-decoration: none; display: inline-block;">Email</a>
-                        <a href="#" class="magnetic-btn"
-                            style="text-decoration: none; display: inline-block;">LinkedIn</a>
-                        <a href="myresume.pdf" target="_blank" class="magnetic-btn"
-                            style="text-decoration: none; display: inline-block;">Resume</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<script>
+const modal = document.getElementById("modal");
+const body = document.getElementById("modal-body");
 
-    <script>
-        /* --- STATE --- */
-        let entered = false;
+function openModal(type){
 
-        /* --- CURSOR SYSTEM --- */
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        const spotlight = document.getElementById('spotlight');
+let content="";
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+if(type==="bank"){
+content=`
+<img src="images/bank.jpg">
+<h2>Bank Accounts Management</h2>
+<p>Full Java banking application demonstrating OOP, account handling and file storage.</p>
+<a href="https://sanjanareddyy01.github.io/BankAccountsManagement/" target="_blank" class="magnetic-btn">Open Project</a>
+`;
+}
 
-            // Dot follows instantly
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+if(type==="campus"){
+content=`
+<img src="images/campus.jpg">
+<h2>Campus Event Finder App</h2>
+<p>Complete UX case study and prototype designed in Figma.</p>
+<a href="https://www.figma.com/make/Wd69leFsxW9MCxla5CueAC/Campus-Event-Finder-App?fullscreen=1&t=dzdYEBPI874nRsDE-1" target="_blank" class="magnetic-btn">Open Prototype</a>
+`;
+}
 
-            // Outline follows with slight delay built-in via CSS transition unique property? 
-            // Actually usually JS lag is better for magnetic feel, but CSS transition on 'left'/'top' works too.
-            // Let's use direct JS for precision or rely on valid interaction.
+body.innerHTML=content;
+modal.style.display="flex";
+}
 
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+function closeModal(){
+modal.style.display="none";
+}
+</script>
 
-            // Spotlight update
-            spotlight.style.setProperty('--x', `${posX}px`);
-            spotlight.style.setProperty('--y', `${posY}px`);
-        });
-
-        // Hover Effects for Cursor
-        document.querySelectorAll('button, a, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorOutline.style.backgroundColor = 'rgba(255,255,255,0.1)';
-                cursorOutline.style.borderColor = 'transparent';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.backgroundColor = 'transparent';
-                cursorOutline.style.borderColor = 'rgba(255,255,255,0.5)';
-            });
-        });
-
-        /* --- MAGNETIC BUTTONS --- */
-        const magneticBtns = document.querySelectorAll('.magnetic-btn');
-        magneticBtns.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-
-                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-
-        /* --- INTRO DOUBLE TAP --- */
-        const introSection = document.getElementById('intro');
-        const mainContent = document.getElementById('main-content');
-        let lastTap = 0;
-
-        function enterSite() {
-            entered = true;
-            introSection.classList.add('hidden');
-            setTimeout(() => {
-                introSection.style.display = 'none';
-                mainContent.style.display = 'block';
-                // Trigger reflow/animation check
-                window.dispatchEvent(new Event('scroll'));
-            }, 800);
-        }
-
-        /* Desktop Double Click */
-        document.addEventListener('dblclick', (e) => {
-            if (!entered) enterSite();
-        });
-
-        /* Mobile Double Tap */
-        document.addEventListener('touchend', (e) => {
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            if (tapLength < 500 && tapLength > 0) {
-                if (!entered) {
-                    e.preventDefault();
-                    enterSite();
-                }
-            }
-            lastTap = currentTime;
-        });
-
-
-        /* --- SCROLL ANIMATIONS --- */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-
-        /* --- PARTICLES (Intro & Contact) --- */
-        function initParticles(canvasId, isSnow = false) {
-            const canvas = document.getElementById(canvasId);
-            const ctx = canvas.getContext('2d');
-
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const particles = [];
-            const particleCount = 60;
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedX = (Math.random() - 0.5) * 0.5;
-                    this.speedY = isSnow ? Math.random() * 1 + 0.5 : (Math.random() - 0.5) * 0.5;
-                    this.opacity = Math.random() * 0.5 + 0.1;
-                }
-
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-
-                    if (isSnow) {
-                        if (this.y > canvas.height) {
-                            this.y = 0;
-                            this.x = Math.random() * canvas.width;
-                        }
-                    } else {
-                        // Floating bounce
-                        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-                    }
-                }
-
-                draw() {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        }
-
-        initParticles('particles-canvas');
-        initParticles('snow-canvas', true);
-
-    </script>
 </body>
-
-
 </html>
-
